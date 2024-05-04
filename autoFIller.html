@@ -12,7 +12,7 @@
       }
       h1 {
         text-align: center;
-        margin-top: 1%;
+        font-size: 20px;
         font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
       }
       h4 {
@@ -23,18 +23,21 @@
       input {
         display: flex;
         width: 100%;
-        height: 100%;
-        flex-grow: 1;
         border: none;
-        padding: 10px;
+        height: 100%;
         font-size: 11px;
         outline: none;
+      }
+      table td {
+        height: 20px;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
       }
 
       table {
         border-collapse: collapse;
         width: 100%;
-        margin-top: 2%;
+        margin-top: 1%;
         font-size: 14px;
       }
       th {
@@ -52,7 +55,7 @@
         width: 3000px;
       }
       #noneRow {
-        height: 20px;
+        height: 10px;
         border-bottom: 3px solid black;
       }
 
@@ -73,7 +76,7 @@
       }
 
       .densityData {
-        text-align: cent;
+        text-align: center;
       }
     </style>
   </head>
@@ -83,23 +86,23 @@
     <table>
       <tr>
         <td><label for="project">Project</label></td>
-        <td><input type="text" /></td>
+        <td colspan="5"><input type="text" /></td>
       </tr>
       <tr>
         <td><label for="project">Contact No</label></td>
-        <td><input type="text" /></td>
+        <td colspan="5"><input type="text" /></td>
       </tr>
       <tr>
         <td><label for="project">Client</label></td>
-        <td><input type="text" /></td>
+        <td colspan="5"><input type="text" /></td>
       </tr>
       <tr>
         <td><label for="project">Contractor</label></td>
-        <td><input type="text" /></td>
+        <td colspan="5"><input type="text" /></td>
       </tr>
       <tr>
         <td><label for="project">Consultant</label></td>
-        <td><input type="text" /></td>
+        <td colspan="5"><input type="text" /></td>
       </tr>
       <tr id="noneRow">
         <td><label for="none"></label></td>
@@ -263,8 +266,8 @@
         <td class="densityData"></td>
         <td><input type="text" class="machineWeight" /></td>
         <td class="correctedLoad"></td>
-        <td class="finalStrength"></td>
-        <td rowspan="3" class="averageStrength"></td>
+        <td class="finalStrength month"></td>
+        <td rowspan="3" class="averageStrength monthly"></td>
       </tr>
       <tr>
         <td>5</td>
@@ -279,7 +282,10 @@
         <td class="densityData"></td>
         <td><input type="text" class="machineWeight" /></td>
         <td class="correctedLoad"></td>
-        <td style="border-right: 1px solid black" class="finalStrength"></td>
+        <td
+          style="border-right: 1px solid black"
+          class="finalStrength month"
+        ></td>
         <!-- <td><input type="text"></td> -->
       </tr>
       <tr>
@@ -295,7 +301,10 @@
         <td class="densityData"></td>
         <td><input type="text" class="machineWeight" /></td>
         <td class="correctedLoad"></td>
-        <td style="border-right: 1px solid black" class="finalStrength"></td>
+        <td
+          style="border-right: 1px solid black"
+          class="finalStrength month"
+        ></td>
         <!-- <td><input type="text"></td> -->
       </tr>
     </table>
@@ -347,11 +356,12 @@
         <td>Sign:</td>
       </tr>
     </table>
+    <button onclick="window.print()">Print Document</button>
 
     <script>
       const dimensions = document.querySelectorAll(".object");
       dimensions.forEach(function (dimension) {
-        dimension.addEventListener("change", function () {
+        dimension.addEventListener("input", function () {
           let density = 0;
 
           const newData = dimension
@@ -369,8 +379,18 @@
           const height = parseInt(
             dimension.closest("tr").querySelector(".height").value
           );
-          density = (wData * 1000000) / (height * height * height);
-          densityToChange.textContent = density.toFixed(0);
+
+          // Check if height is not zero to avoid division by zero
+          if (height !== 0) {
+            density = (wData * 1000000) / (height * height * height);
+            if (isNaN(density)) {
+              densityToChange.textContent = "0";
+            } else {
+              densityToChange.textContent = density.toFixed(0);
+            }
+          } else {
+            densityToChange.textContent = "0";
+          }
         });
       });
 
@@ -378,7 +398,7 @@
 
       weightData.forEach(function (item) {
         let density = 0;
-        item.addEventListener("change", function (event) {
+        item.addEventListener("input", function (event) {
           const densityToChange = item
             .closest("tr")
             .querySelector(".densityData");
@@ -417,16 +437,38 @@
       const newFunction = document.querySelectorAll(".averageStrength");
       newFunction.forEach(function (data) {
         data.addEventListener("click", function (event) {
-          let sum =0;
+          let sum = 0;
           const averageSumData = document.querySelectorAll(".week");
           averageSumData.forEach(function (avrsm) {
             let latData = parseInt(avrsm.textContent);
-            sum+=latData;
+            sum += latData;
           });
-          let newAvr = sum /3;
-          document.querySelector(".averageStrength").textContent = parseFloat(newAvr.toFixed(1));
+          let newAvr = sum / 3;
+          document.querySelector(".averageStrength").textContent = parseFloat(
+            newAvr.toFixed(2)
+          );
         });
       });
+
+      const anotherFunction = document.querySelectorAll(".monthly");
+      anotherFunction.forEach(function (data) {
+        data.addEventListener("click", function (event) {
+          let sum = 0;
+          const averageSumData = document.querySelectorAll(".month");
+          averageSumData.forEach(function (avrsm) {
+            let latData = parseInt(avrsm.textContent);
+            sum += latData;
+          });
+          let newAvr = sum / 3;
+          document.querySelector(".monthly").textContent = parseFloat(
+            newAvr.toFixed(2)
+          );
+        });
+      });
+
+      window.onbeforeprint = function () {
+        document.querySelector("button").style.display = "none";
+      };
     </script>
   </body>
 </html>
