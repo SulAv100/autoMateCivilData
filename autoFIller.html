@@ -81,6 +81,19 @@
       .densityData {
         text-align: center;
       }
+      #print-button{
+        height: 30px;
+        justify-content: center;
+        align-items: center;
+        width: 140px;
+        float: right;
+        margin-top: 20px;
+        margin-right: 20px;
+        display: flex;
+        border-radius: 10px;
+        outline: 0;
+
+      }
     </style>
   </head>
   <body>
@@ -162,7 +175,7 @@
       </th>
       <tr>
         <td><label for="date">Date of casting</label></td>
-        <td><input type="text" /></td>
+        <td><input type="date" /></td>
         <td><label for="sampleNo">No. of sample Casted</label></td>
         <td><input type="text" /></td>
       </tr>
@@ -204,8 +217,8 @@
 
       <tr>
         <td>1</td>
-        <td rowspan="3"><input type="text" /></td>
-        <td rowspan="3"><input type="text" /></td>
+        <td rowspan="3"><input type="text" /> </td>
+        <td rowspan="3"><input type="date"/></td>
         <td rowspan="3"><input type="text" /></td>
         <td><input type="text" class="object height" /></td>
         <td><input type="text" class="object width" /></td>
@@ -259,7 +272,7 @@
       <tr>
         <td>4</td>
         <td rowspan="3"><input type="text" /></td>
-        <td rowspan="3"><input type="text" /></td>
+        <td rowspan="3"><input type="date" /></td>
         <td rowspan="3"><input type="text" /></td>
         <td><input type="text" class="object height" /></td>
         <td><input type="text" class="object width" /></td>
@@ -359,7 +372,7 @@
         <td>Sign:</td>
       </tr>
     </table>
-    <button onclick="window.print()">Print Document</button>
+    <button onclick="window.print()" id="print-button">Print Document</button>
 
     <script>
       const dimensions = document.querySelectorAll(".object");
