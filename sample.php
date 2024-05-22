@@ -84,56 +84,15 @@ if (isset($_POST['sampleCheck']))
   </head>
   <body>
     <h1>Sample selection</h1>
-    <form action="#" method="post" id="sample-form" >
+    <form action="./selection.php" method="post" id="sample-form" >
       <div class="sample-page">
         <label for="sampleName">Sample Name: </label>
         <input type="text" id="input-data" name="sample-name" required />
       </div>
       <div class="button-placer">
-        <button onclick="handleSubmission()" type="submit" name="sampleCheck">Check</button>
+        <button type="submit" name="sampleCheck">Check</button>
       </div>
     </form>
-    <div class="selection-container">
-
-    <form action="" method="post">
-      <div class="sample-page test-mechanism">
-        <label for="testMechanism">Testing Mechanism:</label>
-        <select id="testing-mechanism" required>
-          <option value="">Select testing mechanism</option>
-          <?php
-            require_once "./core/init.php";
-            echo $sampleName;
-            $sql = "SELECT * FROM samples WHERE sampleName = $sampleName";
-            $res = mysqli_query($conn,$sql);
-            $i = 0;
-            while ($row = mysqli_fetch_assoc($res))
-            {
-              $i++;
-              $test = explode(',',$row['sampleTests']);
-              print_r($test);
-
-          ?>
-
-              <option value="<?=$test[$i];?>"><?=$test[$i];?></option>
-
-          <?php
-            }
-          ?>
-
-          <!-- <option value="Chemical Composition Analysis">Chemical Composition Analysis</option>
-          <option value="Heat of Hydration Test">Heat of Hydration Test</option>
-          <option value="Specific Gravity Test">Specific Gravity Test</option>
-          <option value="Soundness Test">Soundness Test</option>
-          <option value="Setting Time Test">Setting Time Test</option> -->
-
-
-        </select>
-      </div>
-      <div class="button-placer">
-        <button type="submit">Submit</button>
-      </div>
-    </form>
-      </div>
       
     <script>
         document.querySelector(".sample-form").addEventListener("submit",(event)=>{
@@ -143,21 +102,6 @@ if (isset($_POST['sampleCheck']))
                 alert("Enter a sample data");
             }
         })
-
-        function handleSubmission(){
-          const dropDown = document.querySelector(".selection-container");
-          const data =document.getElementById("input-data");
-
-
-          if(data.value <1){
-            dropDown.style.display = "block";
-            event.preventDefault();
-            alert("Hello");
-          }
-
-        }
-
-
 
     </script>
   </body>

@@ -16,7 +16,7 @@
     .selection-container{
         position: absolute;
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
         gap: 50px;
         top: 50%;
         left: 50%;
@@ -47,37 +47,48 @@
 </head>
 
 <body>
-    <div class="selection-container">
-        <button>Submit</button>
+    <?php
+        require_once "./core/init.php";
+        $sampleName = htmlspecialchars($_POST['sample-name']);
+        $sql = "SELECT * FROM samples WHERE sampleName = '$sampleName'";
+        $res = mysqli_query($conn, $sql);
+        if($row = mysqli_fetch_assoc($res)) {
+        ?>
+            <div class="selection-container">
+            
 
-
-        <form action="" method="post">
-            <div class="sample-page test-mechanism">
-                <label for="testMechanism">Testing Mechanism:</label>
-                <select id="testing-mechanism" required>
+            <form action="autoFiller.php" method="post">
+                <div class="sample-page test-mechanism">
+                    <label for="testMechanism">Testing Mechanism:</label>
+                    <select id="testing-mechanism" name="testName" required>
                     <option value="">Select testing mechanism</option>
                     <?php
-                    require_once "./core/init.php";
-                    echo $sampleName;
-                    $sql = "SELECT * FROM samples WHERE sampleName = $sampleName";
-                    $res = mysqli_query($conn, $sql);
-                    $i = 0;
-                    while ($row = mysqli_fetch_assoc($res)) {
-                        $i++;
                         $test = explode(',', $row['sampleTests']);
-                        print_r($test);
-
+                        $i = count($test);
+                        while($i > 0)
+                        { 
+                            $i--;
                         ?>
-
-                        <option value="<?= $test[$i]; ?>"><?= $test[$i]; ?></option>
+                        <option value="<?= $test[$i]; ?>" ><?= $test[$i]; ?></option>
 
                         <?php
-                    }
-                    ?>
-                </select>
+                        }
+                        ?>
+                    </select>
+                </div>
+                <button type="submit" name="testSubmit">Submit</button>
+            </form>
+    
             </div>
-        </form>
-    </div>
+            <?php
+        }
+        else
+        {
+        ?>
+        <div>no such sample exist</div>
+        <?php
+        }
+    ?>
     
 </body>
 
