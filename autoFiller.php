@@ -497,6 +497,9 @@ if(isset($_POST['testSubmit']))
       window.onbeforeprint = function () {
         document.querySelector("button").style.display = "none";
       };
+      window.onafterprint = function () {
+        document.querySelector("button").style.display = "block";
+      };
     </script>
   </body>
 </html>
