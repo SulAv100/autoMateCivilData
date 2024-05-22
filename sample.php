@@ -75,6 +75,11 @@ if (isset($_POST['sampleCheck']))
         display: flex;
         justify-content: center;
     }
+    .selection-container{
+      position: absolute;
+      display: none;
+      bottom: 0;
+    }
     </style>
   </head>
   <body>
@@ -85,9 +90,11 @@ if (isset($_POST['sampleCheck']))
         <input type="text" id="input-data" name="sample-name" required />
       </div>
       <div class="button-placer">
-        <button type="submit" name="sampleCheck">Check</button>
+        <button onclick="handleSubmission()" type="submit" name="sampleCheck">Check</button>
       </div>
     </form>
+    <div class="selection-container">
+
     <form action="" method="post">
       <div class="sample-page test-mechanism">
         <label for="testMechanism">Testing Mechanism:</label>
@@ -126,9 +133,8 @@ if (isset($_POST['sampleCheck']))
         <button type="submit">Submit</button>
       </div>
     </form>
+      </div>
       
-      
-    </form>
     <script>
         document.querySelector(".sample-form").addEventListener("submit",(event)=>{
             const sample_data = document.getElementById("input-data").value;
@@ -137,6 +143,22 @@ if (isset($_POST['sampleCheck']))
                 alert("Enter a sample data");
             }
         })
+
+        function handleSubmission(){
+          const dropDown = document.querySelector(".selection-container");
+          const data =document.getElementById("input-data");
+
+
+          if(data.value <1){
+            dropDown.style.display = "block";
+            event.preventDefault();
+            alert("Hello");
+          }
+
+        }
+
+
+
     </script>
   </body>
 </html>
