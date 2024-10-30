@@ -113,6 +113,8 @@ if(isset($_POST['testSubmit']))
       /* Hide URL and page count */
       body {
           margin: 0;
+          margin-left: 0.25cm;
+          margin-right: 0.25cm;
           padding: 0;
       }
       
@@ -124,6 +126,9 @@ if(isset($_POST['testSubmit']))
       /* Hide file path and page numbers */
       div:last-child {
           display: none !important;
+      }
+      text{
+        margin-left: 1cm
       }
   }
     </style>
@@ -554,7 +559,7 @@ if(isset($_POST['testSubmit']))
             headerFooter: false
         });
         document.querySelector("button").style.display = "none";
-    }
+        }
       };
       window.onafterprint = function () {
         document.querySelector("button").style.display = "block";
