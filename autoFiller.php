@@ -137,8 +137,8 @@ if(isset($_POST['testSubmit']))
         <td colspan="5"><input type="text" /></td>
       </tr>
       <tr>
-        <td><label for="project">Contact No</label></td>
-        <td colspan="5"><input type="text" /></td>
+        <td><label for="project">Contract No</label></td>
+        <td colspan="5"><input type="text"  id="contract_no" name="contract_no" readonly /></td>
       </tr>
       <tr>
         <td><label for="project">Client</label></td>
@@ -411,6 +411,34 @@ if(isset($_POST['testSubmit']))
     <button onclick="window.print()" id="print-button">Print Document</button>
 
     <script>
+
+      function generateDateBasedContractNumber() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+        
+        // Add simple offsets to obscure the values
+        const offsetYear = year - 2000; // Offset year by 2000 to fit in two digits (for years 2000-2099)
+        const offsetMonth = (month + 13) % 12; // Offset and wrap month
+        const offsetDay = (day + 20) % 31; // Offset and wrap day
+        const offsetHours = (hours + 15) % 24; // Offset and wrap hours
+        const offsetMinutes = (minutes + 30) % 60; // Offset and wrap minutes
+        const offsetSeconds = (seconds + 45) % 60; // Offset and wrap seconds
+        
+        // Create an encoded string (using padStart for uniform length)
+        const contractNumber = `${String(offsetYear).padStart(2, '0')}${String(offsetMonth).padStart(2, '0')}${String(offsetDay).padStart(2, '0')}${String(offsetHours).padStart(2, '0')}${String(offsetMinutes).padStart(2, '0')}${String(offsetSeconds).padStart(2, '0')}`;
+    
+        document.getElementById("contract_no").value = contractNumber;
+
+      }
+
+      window.onload = generateDateBasedContractNumber;
+
+
       const dimensions = document.querySelectorAll(".object");
       dimensions.forEach(function (dimension) {
         dimension.addEventListener("input", function () {
