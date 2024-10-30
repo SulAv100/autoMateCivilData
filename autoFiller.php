@@ -102,6 +102,30 @@ if(isset($_POST['testSubmit']))
         outline: 0;
 
       }
+
+      @media print {
+      /* Hide header and footer during print */
+      @page {
+          margin: 0;
+          size: auto;
+      }
+      
+      /* Hide URL and page count */
+      body {
+          margin: 0;
+          padding: 0;
+      }
+      
+      /* Hide buttons during print */
+      button {
+          display: none !important;
+      }
+      
+      /* Hide file path and page numbers */
+      div:last-child {
+          display: none !important;
+      }
+  }
     </style>
   </head>
   <body>
@@ -495,7 +519,14 @@ if(isset($_POST['testSubmit']))
       });
 
       window.onbeforeprint = function () {
+        if (typeof window.print === 'function') {
+        window.print({
+            silent: true,
+            printBackground: true,
+            headerFooter: false
+        });
         document.querySelector("button").style.display = "none";
+    }
       };
       window.onafterprint = function () {
         document.querySelector("button").style.display = "block";
