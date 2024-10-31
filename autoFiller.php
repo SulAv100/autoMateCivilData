@@ -112,13 +112,13 @@ if(isset($_POST['testSubmit']))
       /* Hide header and footer during print */
       @page {
           margin: 0;
-          size: auto;
+          /* size: auto; */
       }
       
       /* Hide URL and page count */
       body {
           margin: 0;
-          margin-top: 0.5cm;
+          /* margin-top: 0.5cm; */
           margin-left: 0.25cm;
           margin-right: 0.25cm;
           padding: 0;
@@ -152,7 +152,7 @@ if(isset($_POST['testSubmit']))
           text-align: center;
           vertical-align: middle;
       }
-  }
+      }
     </style>
   </head>
   <body>
@@ -456,9 +456,52 @@ if(isset($_POST['testSubmit']))
         <td>Sign:</td>
       </tr>
     </table>
-    <button onclick="window.print()" id="print-button">Print Document</button>
+
+    <div class="hideOnPrint">
+      <button onclick="window.print()" id="print-button">Print Document</button>
+      <p>Print count: <span id="print-count">0</span></p>
+    </div>
+
 
     <script>
+
+      let printCount = 0;
+      const testName = "<?php echo htmlspecialchars($testName); ?>"; // Pass PHP variable to JavaScript
+
+
+      function incrementPrintCount() {
+          printCount++;
+          document.getElementById("print-count").innerText = printCount;
+
+          fetch('./core/count_print.php', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              body: `testName=${encodeURIComponent(testName)}&printCount=${encodeURIComponent(printCount)}`
+            })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  console.log('Print count updated successfully!');
+              } else {
+                  console.log('Failed to update print count.');
+              }
+          })
+          .catch(error => console.error('Error:', error));
+      }
+
+      if (window.matchMedia) {
+          const mediaQueryList = window.matchMedia('print');
+          mediaQueryList.addEventListener('change', function(e) {
+              if (!e.matches) {
+                incrementPrintCount();
+              }
+          });
+      } 
+      else {
+          window.addEventListener('afterprint', incrementPrintCount);
+      }
 
       function generateDateBasedContractNumber() {
         const now = new Date();
@@ -601,11 +644,11 @@ if(isset($_POST['testSubmit']))
             printBackground: true,
             headerFooter: false
         });
-        document.querySelector("button").style.display = "none";
+        document.querySelector(".hideOnPrint").style.display = "none";
         }
       };
       window.onafterprint = function () {
-        document.querySelector("button").style.display = "block";
+        document.querySelector(".hideOnPrint").style.display = "block";
       };
     </script>
   </body>
