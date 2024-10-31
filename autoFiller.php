@@ -87,6 +87,8 @@ if(isset($_POST['testSubmit']))
         position: relative;
         display: inline-flex;
         align-items: center;
+        width: 100%;
+        height: 100%;
       }
 
       .densityData {
@@ -349,8 +351,13 @@ if(isset($_POST['testSubmit']))
             <td>4</td>
             <td rowspan="3"><input type="text" /></td>
             <td rowspan="3"><input type="date" /></td>
-            <td rowspan="3"><input type="text" class="centered-text" /></td>
-            <td><input type="text" class="object height" /></td>
+            <td rowspan="3" class="selected-value" data-value="7">
+              <select onchange="this.parentNode.setAttribute('data-value', this.value)">
+                <option value="7">7</option>
+                <option value="14">14</option>  
+                <option value="28">28</option>
+              </select>
+            </td>            <td><input type="text" class="object height" /></td>
             <td><input type="text" class="object width" /></td>
             <td><input type="text" class="object length" /></td>
             <td><input type="text" class="weight" /></td>
