@@ -65,6 +65,9 @@ if(isset($_POST['testSubmit']))
         width: 3000px;
         
       }
+      .centered-text{
+        text-align: center;
+      }
       #noneRow {
         height: 10px;
         border-bottom: 3px solid black;
@@ -113,6 +116,7 @@ if(isset($_POST['testSubmit']))
       /* Hide URL and page count */
       body {
           margin: 0;
+          margin-top: 0.5cm;
           margin-left: 0.25cm;
           margin-right: 0.25cm;
           padding: 0;
@@ -129,6 +133,22 @@ if(isset($_POST['testSubmit']))
       }
       text{
         margin-left: 1cm
+      }
+      select {
+        display: none;
+      }
+      /* Show the selected option as text in print view */
+      .selected-value::after {
+            content: attr(data-value);
+            display: block;
+            text-align: center;
+            vertical-align: middle;
+            line-height: normal; /* Adjust as needed for alignment */
+      }
+      /* Center-align the cell content vertically */
+      .selected-value {
+          text-align: center;
+          vertical-align: middle;
       }
   }
     </style>
@@ -216,6 +236,12 @@ if(isset($_POST['testSubmit']))
         <td><label for="sampleNo">No. of sample Casted</label></td>
         <td><input type="text" /></td>
       </tr>
+      <tr>
+        <td><label for="timeOfCasting">Time of casting</label></td>
+        <td><input type="text" /></td>
+        <td><label for="sampleNo">Tested Sample</label></td>
+        <td><input type="text" /></td>
+      </tr>
     </table>
 
     <?php
@@ -260,7 +286,17 @@ if(isset($_POST['testSubmit']))
             <td>1</td>
             <td rowspan="3"><input type="text" /> </td>
             <td rowspan="3"><input type="date"/></td>
-            <td rowspan="3"><input type="text" /></td>
+
+            <!--  MAKE THIS DROPDOWN FOR 7,14 AND 28 DAYS OPTION -->
+            <!-- <td rowspan="3"><input type="text" /></td> -->
+            <td rowspan="3" class="selected-value" data-value="7">
+              <select onchange="this.parentNode.setAttribute('data-value', this.value)">
+                <option value="7">7</option>
+                <option value="14">14</option>  
+                <option value="28">28</option>
+              </select>
+            </td>
+
             <td><input type="text" class="object height" /></td>
             <td><input type="text" class="object width" /></td>
             <td><input type="text" class="object length" /></td>
@@ -313,7 +349,7 @@ if(isset($_POST['testSubmit']))
             <td>4</td>
             <td rowspan="3"><input type="text" /></td>
             <td rowspan="3"><input type="date" /></td>
-            <td rowspan="3"><input type="text" /></td>
+            <td rowspan="3"><input type="text" class="centered-text" /></td>
             <td><input type="text" class="object height" /></td>
             <td><input type="text" class="object width" /></td>
             <td><input type="text" class="object length" /></td>
@@ -522,10 +558,10 @@ if(isset($_POST['testSubmit']))
       const newFunction = document.querySelectorAll(".averageStrength");
       newFunction.forEach(function (data) {
         data.addEventListener("click", function (event) {
-          let sum = 0;
+          let sum = 0.0;
           const averageSumData = document.querySelectorAll(".week");
           averageSumData.forEach(function (avrsm) {
-            let latData = parseInt(avrsm.textContent);
+            let latData = parseFloat(avrsm.textContent);
             sum += latData;
           });
           let newAvr = sum / 3;
