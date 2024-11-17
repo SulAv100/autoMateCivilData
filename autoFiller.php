@@ -12,6 +12,10 @@ if(isset($_POST['testSubmit']))
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <!-- <link href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" /> -->
+    <link href="nepali-date-picker.css" rel="stylesheet" type="text/css" />
+    
     <style>
       * {
         margin: 0;
@@ -154,6 +158,8 @@ if(isset($_POST['testSubmit']))
       }
       }
     </style>
+
+
   </head>
   <body>
     <h1>Barahi Technical Solutions Pvt Ltd</h1>
@@ -234,7 +240,8 @@ if(isset($_POST['testSubmit']))
       </th>
       <tr>
         <td><label for="date">Date of casting</label></td>
-        <td><input type="date" /></td>
+        <!-- Input field for the Nepali Date Picker -->
+        <input type="text" class="nepalidatepicker"/>
         <td><label for="sampleNo">No. of sample Casted</label></td>
         <td><input type="text" /></td>
       </tr>
@@ -292,7 +299,7 @@ if(isset($_POST['testSubmit']))
             <!--  MAKE THIS DROPDOWN FOR 7,14 AND 28 DAYS OPTION -->
             <!-- <td rowspan="3"><input type="text" /></td> -->
             <td rowspan="3" class="selected-value" data-value="7">
-              <select onchange="this.parentNode.setAttribute('data-value', this.value)">
+              <select class='auto-calculate' onchange="this.parentNode.setAttribute('data-value', this.value)">
                 <option value="7">7</option>
                 <option value="14">14</option>  
                 <option value="28">28</option>
@@ -350,9 +357,9 @@ if(isset($_POST['testSubmit']))
         <tr>
             <td>4</td>
             <td rowspan="3"><input type="text" /></td>
-            <td rowspan="3"><input type="date" /></td>
+            <td rowspan="3"><input type="date" class='fill-auto' /></td>
             <td rowspan="3" class="selected-value" data-value="7">
-              <select onchange="this.parentNode.setAttribute('data-value', this.value)">
+              <select class='auto-calculate'  onchange="this.parentNode.setAttribute('data-value', this.value)">
                 <option value="7">7</option>
                 <option value="14">14</option>  
                 <option value="28">28</option>
@@ -463,7 +470,17 @@ if(isset($_POST['testSubmit']))
     </div>
 
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include Nepali Date Picker JS -->
+
+    <script src="nepali-date-picker.min.js"></script>
+
     <script>
+        $(document).ready(function() {
+            // Initialize Nepali Date Picker
+            $('.nepalidatepicker').nepaliDatePicker();
+        });
 
       let printCount = 0;
       const testName = "<?php echo htmlspecialchars($testName); ?>"; // Pass PHP variable to JavaScript
@@ -650,6 +667,45 @@ if(isset($_POST['testSubmit']))
       window.onafterprint = function () {
         document.querySelector(".hideOnPrint").style.display = "block";
       };
+
+
+      document.querySelector('.auto-date').addEventListener("change",function(event){
+        console.log(event.target.value);
+        var selectedData = event.target.value;
+      })
+
+      const handleFetch = async (event) => {
+        console.log("Chalenxa hai ta");
+        var selectedValue = event.target.value;
+        var currentData = document.querySelector(".auto-date").value;
+
+        try {
+          console.log(JSON.stringify({ initialDate: currentData, selectedValue: selectedValue }));
+
+          const response = await fetch(`./core/date_converter.php`, { 
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ initialDate: currentData, selectedValue: selectedValue })
+          });
+
+          const data = await response.json();
+          if (!response.ok) {
+            console.log(response.statusText);
+            return;
+          }
+          console.log(data);
+        } catch (error) {
+          console.error(error);
+        }
+
+        console.log(currentData);
+      };
+
+
+        document.querySelector(".auto-calculate").addEventListener('change', handleFetch);
+
     </script>
   </body>
 </html>
