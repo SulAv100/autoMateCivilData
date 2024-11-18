@@ -76,6 +76,12 @@ if(isset($_POST['testSubmit']))
                 display: block;
                 text-align: center;
             }
+            @media print {
+    table tr, table td {
+       height: 35px; 
+    }
+}
+
         }
 
         h1 {
@@ -193,9 +199,7 @@ if(isset($_POST['testSubmit']))
         <td><label for="project">Consultant</label></td>
         <td colspan="5"><input type="text" value="<?php echo $_POST['consultantName']; ?>"  /></td>
     </tr>
-    <tr id="noneRow">
-        <td><label for="none"></label></td>
-    </tr>
+  
     <tr style="border-bottom: 1px solid black">
         <th colspan="4" style="text-align:left;">RFI No:</th>
         
@@ -422,7 +426,7 @@ if(isset($_POST['testSubmit']))
 
     <div class="hideOnPrint">
       <button onclick="window.print()" id="print-button">Print Document</button>
-      <p>Print count: <span id="print-count">0</span></p>
+      <!-- <p>Print count: <span id="print-count">0</span></p> -->
     </div>
 
 
