@@ -197,18 +197,20 @@ if(isset($_POST['testSubmit']))
         <td><label for="none"></label></td>
     </tr>
     <tr style="border-bottom: 1px solid black">
-        <th>RFI No:</th>
-        <th></th>
-        <th>Lab.Ref.No</th>
-        <th></th>
+        <th colspan="4" style="text-align:left;">RFI No:</th>
+        
     </tr>
     <tr style="border-top: 2px solid black">
         <td><label for="site">Construction Site</label></td>
         <td><input type="text" value="<?php echo $_POST['constructionSite']; ?>"  /></td>
+        <td><label for="cementbrand">Brand of Cement</label></td>
+        <td><input type="text" value="<?php echo $_POST['cementBrand']; ?>"  /></td>
     </tr>
     <tr>
         <td><label for="structure">Part of Structure/Location</label></td>
         <td><input type="text" value="<?php echo $_POST['partOfStructure']; ?>"  /></td>
+        <td><label for="mixDesign">Mix Design No:</label></td>
+        <td><input type="text" value="<?php echo $_POST['mixDesignNo']; ?>"  /></td>
     </tr>
     <tr>
         <td>
@@ -218,19 +220,10 @@ if(isset($_POST['testSubmit']))
             </label>
         </td>
         <td><input type="text" value="<?php echo $_POST['sourceFineAgg']; ?>"  /></td>
-    </tr>
-    <tr>
-        <td><label for="cementbrand">Brand of Cement</label></td>
-        <td><input type="text" value="<?php echo $_POST['cementBrand']; ?>"  /></td>
-    </tr>
-    <tr>
-        <td><label for="mixDesign">Mix Design No:</label></td>
-        <td><input type="text" value="<?php echo $_POST['mixDesignNo']; ?>"  /></td>
-    </tr>
-    <tr>
         <td><label for="class">Concrete Class</label></td>
         <td><input type="text" value="<?php echo $_POST['concreteClass']; ?>"  /></td>
     </tr>
+ 
     <th id="heading-data" colspan="4">
         <h1>Fresh Concrete Data</h1>
     </th>
