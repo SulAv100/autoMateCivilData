@@ -130,10 +130,12 @@
 
 
 
-        /* #nextBtn {
-            display: block;
+        #nextBtn {
             margin-left: auto;
-        } */
+        }
+         #backBtn{
+            display:none;
+         }
     </style>
 </head>
 
@@ -269,12 +271,26 @@
         const form1 = document.getElementById("formPart1");
         const form2 = document.getElementById("formPart2");
         const form3 = document.getElementById("formPart3");
+        const input = document.querySelectorAll('input');
+        const input1 = document.querySelectorAll('#formPart1 .form-group input, #formPart1 .form-group select');
+const input2 = document.querySelectorAll('#formPart2 .form-group input, #formPart2 .form-group select');
+const input3 = document.querySelectorAll('#formPart3 .form-group input, #formPart3 .form-group select');
+
+
 
         nextBtn.addEventListener("click", (e) => {
             e.preventDefault()
             if (counter === 1) {
                 form1.style.left = "-100%"
                 form2.style.left = "0"
+                backBtn.style.display = "block"
+                setIndex();
+                input2.forEach(input => {
+                    input.setAttribute('tabindex',1)
+                })
+                
+                
+                
             }
             else if (counter === 2) {
                 form1.style.left = "-100%"
@@ -282,9 +298,13 @@
                 form3.style.left = "0"
                 submitBtn.style.display = "block"
                 nextBtn.style.display = "none"
-
+                setIndex();
+                input3.forEach(input => {
+                    input.setAttribute('tabindex',1)
+                })
+                
             }
-
+            
             counter++;
             console.log(counter)
         });
@@ -295,15 +315,35 @@
                 form2.style.left = "0"
                 submitBtn.style.display = "none"
                 nextBtn.style.display = "block"
+                setIndex();
+                input2.forEach(input => {
+                    input.setAttribute('tabindex',1)
+                })
             }
             else if (counter === 2) {
                 form2.style.left = "100%"
                 form1.style.left = "0"
+                backBtn.style.display = "none"
+                setIndex();
+                input1.forEach(input => {
+                    input.setAttribute('tabindex',1)
+                })
             }
 
             counter--;
             console.log(counter)
         });
+
+        function setIndex(){
+            input.forEach(input => {
+                    input.setAttribute('tabindex',-1)
+                })
+        }
+        window.onload = function () {
+    input2.forEach(input => input.setAttribute('tabindex', -1));
+    input3.forEach(input => input.setAttribute('tabindex', -1));
+};
+
 
 
 
