@@ -3,6 +3,12 @@
 if(isset($_POST['testSubmit']))
 {
     $testName = $_POST['testName'];
+
+    if ($_POST['cementType'] == "cube"){
+      $dimVal = 150;
+    }else{
+      $dimVal = 70.6;
+    }
 }
 ?>
 
@@ -157,6 +163,10 @@ if(isset($_POST['testSubmit']))
           vertical-align: middle;
       }
       }
+     
+     
+        
+      
     </style>
 
 
@@ -165,93 +175,81 @@ if(isset($_POST['testSubmit']))
     <h1>Barahi Technical Solutions Pvt Ltd</h1>
     <h4>Pokhara-8</h4>
     <table>
-      <tr>
+    <tr>
         <td><label for="project">Project</label></td>
-        <td colspan="5"><input type="text" /></td>
-      </tr>
-      <tr>
+        <td colspan="5"><input type="text" value="<?php echo $_POST['projectName']; ?>" readonly /></td>
+    </tr>
+    <tr>
         <td><label for="project">Contract No</label></td>
-        <td colspan="5"><input type="text"  id="contract_no" name="contract_no" readonly /></td>
-      </tr>
-      <tr>
+        <td colspan="5"><input type="text" id="contract_no" name="contract_no" readonly /></td>
+    </tr>
+    <tr>
         <td><label for="project">Client</label></td>
-        <td colspan="5"><input type="text" /></td>
-      </tr>
-      <tr>
+        <td colspan="5"><input type="text" value="<?php echo $_POST['clientName']; ?>" readonly /></td>
+    </tr>
+    <tr>
         <td><label for="project">Contractor</label></td>
-        <td colspan="5"><input type="text" /></td>
-      </tr>
-      <tr>
+        <td colspan="5"><input type="text" value="<?php echo $_POST['contractorName']; ?>" readonly /></td>
+    </tr>
+    <tr>
         <td><label for="project">Consultant</label></td>
-        <td colspan="5"><input type="text" /></td>
-      </tr>
-      <tr id="noneRow">
+        <td colspan="5"><input type="text" value="<?php echo $_POST['consultantName']; ?>" readonly /></td>
+    </tr>
+    <tr id="noneRow">
         <td><label for="none"></label></td>
-      </tr>
-      <tr style="border-bottom: 1px solid black">
+    </tr>
+    <tr style="border-bottom: 1px solid black">
         <th>RFI No:</th>
         <th></th>
         <th>Lab.Ref.No</th>
         <th></th>
-      </tr>
-      <tr style="border-top: 2px solid black">
+    </tr>
+    <tr style="border-top: 2px solid black">
         <td><label for="site">Construction Site</label></td>
-        <td><input type="text" /></td>
-        <td><input type="text" /></td>
-        <td><input type="text" /></td>
-      </tr>
-      <tr>
+        <td><input type="text" value="<?php echo $_POST['constructionSite']; ?>" readonly /></td>
+    </tr>
+    <tr>
         <td><label for="structure">Part of Structure/Location</label></td>
-        <td><input type="text" /></td>
-        <td><input type="text" /></td>
-        <td><input type="text" /></td>
-      </tr>
-      <tr>
+        <td><input type="text" value="<?php echo $_POST['partOfStructure']; ?>" readonly /></td>
+    </tr>
+    <tr>
         <td>
-          <label for="sources" class="smallFont"
-            >Sources/ Location of Fine & Coarse <br />
-            Agg:
-          </label>
+            <label for="sources" class="smallFont">
+                Sources/Location of Fine & Coarse<br />
+                Agg:
+            </label>
         </td>
-        <td><input type="text" /></td>
-        <td><input type="text" /></td>
-        <td><input type="text" /></td>
-      </tr>
-      <tr>
+        <td><input type="text" value="<?php echo $_POST['sourceFineAgg']; ?>" readonly /></td>
+    </tr>
+    <tr>
         <td><label for="cementbrand">Brand of Cement</label></td>
-        <td><input type="text" /></td>
-        <td><input type="text" /></td>
-        <td><input type="text" /></td>
-      </tr>
-      <tr>
+        <td><input type="text" value="<?php echo $_POST['cementBrand']; ?>" readonly /></td>
+    </tr>
+    <tr>
         <td><label for="mixDesign">Mix Design No:</label></td>
-        <td><input type="text" /></td>
-        <td><input type="text" /></td>
-        <td><input type="text" /></td>
-      </tr>
-      <tr>
+        <td><input type="text" value="<?php echo $_POST['mixDesignNo']; ?>" readonly /></td>
+    </tr>
+    <tr>
         <td><label for="class">Concrete Class</label></td>
-        <td><input type="text" /></td>
-        <td><input type="text" /></td>
-        <td><input type="text" /></td>
-      </tr>
-      <th id="heading-data" colspan="4">
+        <td><input type="text" value="<?php echo $_POST['concreteClass']; ?>" readonly /></td>
+    </tr>
+    <th id="heading-data" colspan="4">
         <h1>Fresh Concrete Data</h1>
-      </th>
-      <tr>
+    </th>
+    <tr>
         <td><label for="date">Date of casting</label></td>
-        <!-- Input field for the Nepali Date Picker -->
-        <input type="text" class="nepalidatepicker"/>
+        <td><input type="text" class="nepalidatepicker" /></td>
         <td><label for="sampleNo">No. of sample Casted</label></td>
         <td><input type="text" /></td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td><label for="timeOfCasting">Time of casting</label></td>
         <td><input type="text" /></td>
         <td><label for="sampleNo">Tested Sample</label></td>
         <td><input type="text" /></td>
-      </tr>
-    </table>
+    </tr>
+</table>
+
 
     <?php
         if (strcmp($testName, "Cube Compression Test") == 0){
@@ -292,125 +290,92 @@ if(isset($_POST['testSubmit']))
         </tr>
 
         <tr>
-            <td>1</td>
-            <td rowspan="3"><input type="text" /> </td>
-            <td rowspan="3"><input type="date"/></td>
+    <td>1</td>
+    <td rowspan="3"><input type="text" /></td>
+    <td rowspan="3"><input type="date" /></td>
+    <td rowspan="3" class="selected-value" data-value="7">
+        <select class="auto-calculate" onchange="this.parentNode.setAttribute('data-value', this.value)">
+            <option value="7">7</option>
+            <option value="14">14</option>
+            <option value="28">28</option>
+        </select>
+    </td>
+    <td><?php echo $dimVal; ?></td>
+    <td><?php echo $dimVal; ?></td>
+    <td><?php echo $dimVal; ?></td>
+    <td><input type="text" class="weight" /></td>
+    <td class="densityData"></td>
+    <td><input type="text" class="machineWeight" /></td>
+    <td class="correctedLoad"></td>
+    <td class="finalStrength week"></td>
+    <td rowspan="3" class="averageStrength"></td>
+</tr>
+<tr>
+    <td>2</td>
+    <td><?php echo $dimVal; ?></td>
+    <td><?php echo $dimVal; ?></td>
+    <td><?php echo $dimVal; ?></td>
+    <td><input type="text" class="weight" /></td>
+    <td class="densityData"></td>
+    <td><input type="text" class="machineWeight" /></td>
+    <td class="correctedLoad"></td>
+    <td style="border-right: 1px solid black" class="finalStrength week"></td>
+</tr>
+<tr>
+    <td>3</td>
+    <td><?php echo $dimVal; ?></td>
+    <td><?php echo $dimVal; ?></td>
+    <td><?php echo $dimVal; ?></td>
+    <td><input type="text" class="weight" /></td>
+    <td class="densityData"></td>
+    <td><input type="text" class="machineWeight" /></td>
+    <td class="correctedLoad"></td>
+    <td style="border-right: 1px solid black" class="finalStrength week"></td>
+</tr>
 
-            <!--  MAKE THIS DROPDOWN FOR 7,14 AND 28 DAYS OPTION -->
-            <!-- <td rowspan="3"><input type="text" /></td> -->
-            <td rowspan="3" class="selected-value" data-value="7">
-              <select class='auto-calculate' onchange="this.parentNode.setAttribute('data-value', this.value)">
-                <option value="7">7</option>
-                <option value="14">14</option>  
-                <option value="28">28</option>
-              </select>
-            </td>
-
-            <td><input type="text" class="object height" /></td>
-            <td><input type="text" class="object width" /></td>
-            <td><input type="text" class="object length" /></td>
-            <td><input type="text" class="weight" /></td>
-
-            <td class="densityData"></td>
-            <td><input type="text" class="machineWeight" /></td>
-            <td class="correctedLoad"></td>
-            <td class="finalStrength week"></td>
-            <td rowspan="3" class="averageStrength"></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <!-- <td></td>
-            <td></td>
-            <td></td> -->
-            <td><input type="text" class="object height" /></td>
-            <td><input type="text" class="object width" /></td>
-            <td><input type="text" class="object length" /></td>
-            <td><input type="text" class="weight" /></td>
-
-            <td class="densityData"></td>
-            <td><input type="text" class="machineWeight" /></td>
-            <td class="correctedLoad"></td>
-            <td
-            style="border-right: 1px solid black"
-            class="finalStrength week"
-            ></td>
-            <!-- <td><input type="text">la</td> -->
-        </tr>
-        <tr>
-            <td>3</td>
-            <!-- <td></td>
-            <td></td>
-            <td></td> -->
-            <td><input type="text" class="object height" /></td>
-            <td><input type="text" class="object width" /></td>
-            <td><input type="text" class="object length" /></td>
-            <td><input type="text" class="weight" /></td>
-
-            <td class="densityData"></td>
-            <td><input type="text" class="machineWeight" /></td>
-            <td class="correctedLoad"></td>
-            <td
-            style="border-right: 1px solid black"
-            class="finalStrength week"
-            ></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td rowspan="3"><input type="text" /></td>
-            <td rowspan="3"><input type="date" class='fill-auto' /></td>
-            <td rowspan="3" class="selected-value" data-value="7">
-              <select class='auto-calculate'  onchange="this.parentNode.setAttribute('data-value', this.value)">
-                <option value="7">7</option>
-                <option value="14">14</option>  
-                <option value="28">28</option>
-              </select>
-            </td>            <td><input type="text" class="object height" /></td>
-            <td><input type="text" class="object width" /></td>
-            <td><input type="text" class="object length" /></td>
-            <td><input type="text" class="weight" /></td>
-
-            <td class="densityData"></td>
-            <td><input type="text" class="machineWeight" /></td>
-            <td class="correctedLoad"></td>
-            <td class="finalStrength month"></td>
-            <td rowspan="3" class="averageStrength monthly"></td>
-        </tr>
-        <tr>
-            <td>5</td>
-            
-            <td><input type="text" class="object height" /></td>
-            <td><input type="text" class="object width" /></td>
-            <td><input type="text" class="object length" /></td>
-            <td><input type="text" class="weight" /></td>
-
-            <td class="densityData"></td>
-            <td><input type="text" class="machineWeight" /></td>
-            <td class="correctedLoad"></td>
-            <td
-            style="border-right: 1px solid black"
-            class="finalStrength month"
-            ></td>
-            <!-- <td><input type="text"></td> -->
-        </tr>
-        <tr>
-            <td>6</td>
-            <!-- <td><input type="text"></td>
-            <td></td>
-            <td></td> -->
-            <td><input type="text" class="object height" /></td>
-            <td><input type="text" class="object width" /></td>
-            <td><input type="text" class="object length" /></td>
-            <td><input type="text" class="weight" /></td>
-
-            <td class="densityData"></td>
-            <td><input type="text" class="machineWeight" /></td>
-            <td class="correctedLoad"></td>
-            <td
-            style="border-right: 1px solid black"
-            class="finalStrength month"
-            ></td>
-            <!-- <td><input type="text"></td> -->
-        </tr>
+<tr>
+    <td>4</td>
+    <td rowspan="3"><input type="text" /></td>
+    <td rowspan="3"><input type="date" /></td>
+    <td rowspan="3" class="selected-value" data-value="7">
+        <select class="auto-calculate" onchange="this.parentNode.setAttribute('data-value', this.value)">
+            <option value="7">7</option>
+            <option value="14">14</option>
+            <option value="28">28</option>
+        </select>
+    </td>
+    <td><?php echo $dimVal; ?></td>
+    <td><?php echo $dimVal; ?></td>
+    <td><?php echo $dimVal; ?></td>
+    <td><input type="text" class="weight" /></td>
+    <td class="densityData"></td>
+    <td><input type="text" class="machineWeight" /></td>
+    <td class="correctedLoad"></td>
+    <td class="finalStrength week"></td>
+    <td rowspan="3" class="averageStrength"></td>
+</tr>
+<tr>
+    <td>5</td>
+    <td><?php echo $dimVal; ?></td>
+    <td><?php echo $dimVal; ?></td>
+    <td><?php echo $dimVal; ?></td>
+    <td><input type="text" class="weight" /></td>
+    <td class="densityData"></td>
+    <td><input type="text" class="machineWeight" /></td>
+    <td class="correctedLoad"></td>
+    <td style="border-right: 1px solid black" class="finalStrength week"></td>
+</tr>
+<tr>
+    <td>6</td>
+    <td><?php echo $dimVal; ?></td>
+    <td><?php echo $dimVal; ?></td>
+    <td><?php echo $dimVal; ?></td>
+    <td><input type="text" class="weight" /></td>
+    <td class="densityData"></td>
+    <td><input type="text" class="machineWeight" /></td>
+    <td class="correctedLoad"></td>
+    <td style="border-right: 1px solid black" class="finalStrength week"></td>
+</tr>
         </table>
         <?php
         }
@@ -538,7 +503,7 @@ if(isset($_POST['testSubmit']))
         const offsetSeconds = (seconds + 45) % 60; // Offset and wrap seconds
         
         // Create an encoded string (using padStart for uniform length)
-        const contractNumber = `${String(offsetYear).padStart(2, '0')}${String(offsetMonth).padStart(2, '0')}${String(offsetDay).padStart(2, '0')}${String(offsetHours).padStart(2, '0')}${String(offsetMinutes).padStart(2, '0')}${String(offsetSeconds).padStart(2, '0')}`;
+        const contractNumber = `BST-${year}-${String(offsetHours).padStart(2, '0')}${String(offsetMinutes).padStart(2, '0')}${String(offsetSeconds).padStart(2, '0')}`;
     
         document.getElementById("contract_no").value = contractNumber;
 

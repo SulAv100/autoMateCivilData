@@ -245,7 +245,7 @@
             <div class="btn-container">
                 <button id="backBtn">Back</button>
                 <button id="nextBtn">Next</button>
-                <button type="submit" id="submitBtn">Submit</button>
+                <button type="submit" id="submitBtn" name="testSubmit">Submit</button>
             </div>
 
         </form>
