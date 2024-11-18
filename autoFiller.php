@@ -397,7 +397,7 @@ if (isset($_POST['testSubmit'])) {
   ?>
 
   <span><u>Remarks: <input value="Result shows tested sample only."></u></span>
-  <table>
+  <table style="margin-top:10px">
     <tr>
       <th colspan="2">Barahi Technical Solutions Pvt Ltd</th>
       <th colspan="2">Witness</th>
