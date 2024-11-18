@@ -171,6 +171,10 @@ if(isset($_POST['testSubmit']))
             margin: 10px 0;
             font-style: italic;
         }
+        span u{
+          display: flex;
+          align-items: center;
+        }
     </style>
 
 
@@ -238,7 +242,7 @@ if(isset($_POST['testSubmit']))
         <td><input type="text" /></td>
     </tr>
     <tr>
-        <td><label for="timeOfCasting">Time of casting</label></td>
+        <td><label for="timeOfCasting">Fresh Concrete Density (kg/m3)</label></td>
         <td><input type="text" /></td>
         <td><label for="sampleNo">Tested Sample</label></td>
         <td><input type="text" /></td>
@@ -285,98 +289,98 @@ if(isset($_POST['testSubmit']))
         </tr>
 
         <tr>
-    <td>1</td>
-    <td rowspan="3"><input type="text" /></td>
-    <td rowspan="3"><input type="date" /></td>
-    <td rowspan="3" class="selected-value" data-value="7">
-        <select class="auto-calculate" onchange="this.parentNode.setAttribute('data-value', this.value)">
-            <option value="7">7</option>
-            <option value="14">14</option>
-            <option value="28">28</option>
-        </select>
-    </td>
-    <td><?php echo $dimVal; ?></td>
-    <td><?php echo $dimVal; ?></td>
-    <td><?php echo $dimVal; ?></td>
-    <td><input type="text" class="weight" /></td>
-    <td class="densityData"></td>
-    <td><input type="text" class="machineWeight" /></td>
-    <td class="correctedLoad"></td>
-    <td class="finalStrength week"></td>
-    <td rowspan="3" class="averageStrength"></td>
-</tr>
-<tr>
-    <td>2</td>
-    <td><?php echo $dimVal; ?></td>
-    <td><?php echo $dimVal; ?></td>
-    <td><?php echo $dimVal; ?></td>
-    <td><input type="text" class="weight" /></td>
-    <td class="densityData"></td>
-    <td><input type="text" class="machineWeight" /></td>
-    <td class="correctedLoad"></td>
-    <td style="border-right: 1px solid black" class="finalStrength week"></td>
-</tr>
-<tr>
-    <td>3</td>
-    <td><?php echo $dimVal; ?></td>
-    <td><?php echo $dimVal; ?></td>
-    <td><?php echo $dimVal; ?></td>
-    <td><input type="text" class="weight" /></td>
-    <td class="densityData"></td>
-    <td><input type="text" class="machineWeight" /></td>
-    <td class="correctedLoad"></td>
-    <td style="border-right: 1px solid black" class="finalStrength week"></td>
-</tr>
+              <td>1</td>
+              <td rowspan="3"><input type="text" /></td>
+              <td rowspan="3"><input type="date" /></td>
+              <td rowspan="3" class="selected-value" data-value="7">
+                  <select class="auto-calculate" onchange="this.parentNode.setAttribute('data-value', this.value)">
+                      <option value="7">7</option>
+                      <option value="14">14</option>
+                      <option value="28">28</option>
+                  </select>
+              </td>
+              <td><input type="text" class="object height" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="object width" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="object length" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="weight" /></td>
+              <td class="densityData"></td>
+              <td><input type="text" class="machineWeight" /></td>
+              <td class="correctedLoad"></td>
+              <td class="finalStrength uweek"></td>
+              <td rowspan="3" class="averageStrength avsupper"></td>
+          </tr>
+          <tr>
+              <td>2</td>
+              <td><input type="text" class="object height" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="object width" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="object length" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="weight" /></td>
+              <td class="densityData"></td>
+              <td><input type="text" class="machineWeight" /></td>
+              <td class="correctedLoad"></td>
+              <td style="border-right: 1px solid black" class="finalStrength uweek"></td>
+          </tr>
+          <tr>
+              <td>3</td>
+              <td><input type="text" class="object height" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="object width" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="object length" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="weight" /></td>
+              <td class="densityData"></td>
+              <td><input type="text" class="machineWeight" /></td>
+              <td class="correctedLoad"></td>
+              <td style="border-right: 1px solid black" class="finalStrength uweek"></td>
+          </tr>
+          <tr>
+              <td>4</td>
+              <td rowspan="3"><input type="text" /></td>
+              <td rowspan="3"><input type="date" /></td>
+              <td rowspan="3" class="selected-value" data-value="7">
+                  <select class="auto-calculate" onchange="this.parentNode.setAttribute('data-value', this.value)">
+                      <option value="7">7</option>
+                      <option value="14">14</option>
+                      <option value="28">28</option>
+                  </select>
+              </td>
+              <td><input type="text" class="object height" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="object width" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="object length" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="weight" /></td>
+              <td class="densityData"></td>
+              <td><input type="text" class="machineWeight" /></td>
+              <td class="correctedLoad"></td>
+              <td class="finalStrength lweek"></td>
+              <td rowspan="3" class="averageStrength avslower"></td>
+          </tr>
+          <tr>
+              <td>5</td>
+              <td><input type="text" class="object height" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="object width" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="object length" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="weight" /></td>
+              <td class="densityData"></td>
+              <td><input type="text" class="machineWeight" /></td>
+              <td class="correctedLoad"></td>
+              <td style="border-right: 1px solid black" class="finalStrength lweek"></td>
+          </tr>
+          <tr>
+              <td>6</td>
+              <td><input type="text" class="object height" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="object width" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="object length" value="<?php echo $dimVal; ?>" /></td>
+              <td><input type="text" class="weight" /></td>
+              <td class="densityData"></td>
+              <td><input type="text" class="machineWeight" /></td>
+              <td class="correctedLoad"></td>
+              <td style="border-right: 1px solid black" class="finalStrength lweek"></td>
+          </tr>
 
-<tr>
-    <td>4</td>
-    <td rowspan="3"><input type="text" /></td>
-    <td rowspan="3"><input type="date" /></td>
-    <td rowspan="3" class="selected-value" data-value="7">
-        <select class="auto-calculate" onchange="this.parentNode.setAttribute('data-value', this.value)">
-            <option value="7">7</option>
-            <option value="14">14</option>
-            <option value="28">28</option>
-        </select>
-    </td>
-    <td><?php echo $dimVal; ?></td>
-    <td><?php echo $dimVal; ?></td>
-    <td><?php echo $dimVal; ?></td>
-    <td><input type="text" class="weight" /></td>
-    <td class="densityData"></td>
-    <td><input type="text" class="machineWeight" /></td>
-    <td class="correctedLoad"></td>
-    <td class="finalStrength week"></td>
-    <td rowspan="3" class="averageStrength"></td>
-</tr>
-<tr>
-    <td>5</td>
-    <td><?php echo $dimVal; ?></td>
-    <td><?php echo $dimVal; ?></td>
-    <td><?php echo $dimVal; ?></td>
-    <td><input type="text" class="weight" /></td>
-    <td class="densityData"></td>
-    <td><input type="text" class="machineWeight" /></td>
-    <td class="correctedLoad"></td>
-    <td style="border-right: 1px solid black" class="finalStrength week"></td>
-</tr>
-<tr>
-    <td>6</td>
-    <td><?php echo $dimVal; ?></td>
-    <td><?php echo $dimVal; ?></td>
-    <td><?php echo $dimVal; ?></td>
-    <td><input type="text" class="weight" /></td>
-    <td class="densityData"></td>
-    <td><input type="text" class="machineWeight" /></td>
-    <td class="correctedLoad"></td>
-    <td style="border-right: 1px solid black" class="finalStrength week"></td>
-</tr>
         </table>
         <?php
         }
     ?>
 
-    <span><u>Remarks: Result shows tested sample only.</u></span>
+    <span><u>Remarks: <input value="Result shows tested sample only."></u></span>
     <table>
       <tr>
         <th colspan="2">Barahi Technical Solutions Pvt Ltd</th>
@@ -397,12 +401,12 @@ if(isset($_POST['testSubmit']))
       <tr class="last-row">
         <td>
           <div class="single-line">
-            <label for="name">Name: </label><input type="text" />
+            <label for="name">Name: </label><input type="text" value="Surya Pd. Paudel" />
           </div>
         </td>
         <td>
           <div class="single-line">
-            <label for="name">Name: </label><input type="text" />
+            <label for="name">Name: </label><input type="text" value="Er. Santosh GC"/>
           </div>
         </td>
         <td>
@@ -582,37 +586,73 @@ if(isset($_POST['testSubmit']))
         });
       });
 
-      const newFunction = document.querySelectorAll(".averageStrength");
-      newFunction.forEach(function (data) {
-        data.addEventListener("click", function (event) {
+      const avsUpperElements = document.querySelectorAll(".avsupper");
+
+      avsUpperElements.forEach(function (avsUpperElement) {
+        avsUpperElement.addEventListener("click", function () {
           let sum = 0.0;
-          const averageSumData = document.querySelectorAll(".week");
+          const averageSumData = document.querySelectorAll(".uweek");
+
+          // Iterate and calculate the sum
           averageSumData.forEach(function (avrsm) {
-            let latData = parseFloat(avrsm.textContent);
-            sum += latData;
+            let latData = parseFloat(avrsm.textContent.trim());
+            if (!isNaN(latData)) { // Check if the value is a valid number
+              sum += latData;
+            }
           });
-          let newAvr = sum / 3;
-          document.querySelector(".averageStrength").textContent = parseFloat(
-            newAvr.toFixed(2)
-          );
+
+          // Calculate the average only if there are valid `.uweek` elements
+          const count = averageSumData.length;
+          if (count > 0) {
+            let newAvr = sum / count;
+            avsUpperElement.textContent = newAvr.toFixed(2); // Update the clicked element
+          } else {
+            avsUpperElement.textContent = "0.00"; // Handle no valid data case
+          }
         });
       });
 
-      const anotherFunction = document.querySelectorAll(".monthly");
-      anotherFunction.forEach(function (data) {
-        data.addEventListener("click", function (event) {
-          let sum = 0;
-          const averageSumData = document.querySelectorAll(".month");
+      const avsLowerElements = document.querySelectorAll(".avslower");
+
+      avsLowerElements.forEach(function (avsLowerElement) {
+        avsLowerElement.addEventListener("click", function () {
+          let sum = 0.0;
+          const averageSumData = document.querySelectorAll(".lweek");
+
+          // Iterate and calculate the sum
           averageSumData.forEach(function (avrsm) {
-            let latData = parseInt(avrsm.textContent);
-            sum += latData;
+            let latData = parseFloat(avrsm.textContent.trim());
+            if (!isNaN(latData)) { // Check if the value is a valid number
+              sum += latData;
+            }
           });
-          let newAvr = sum / 3;
-          document.querySelector(".monthly").textContent = parseFloat(
-            newAvr.toFixed(2)
-          );
+
+          // Calculate the average only if there are valid `.lweek` elements
+          const count = averageSumData.length;
+          if (count > 0) {
+            let newAvr = sum / count;
+            avsLowerElement.textContent = newAvr.toFixed(2); // Update the clicked element
+          } else {
+            avsLowerElement.textContent = "0.00"; // Handle no valid data case
+          }
         });
       });
+
+      // const anotherFunction = document.querySelectorAll(".monthly");
+      // anotherFunction.forEach(function (data) {
+      //   data.addEventListener("click", function (event) {
+      //     let sum = 0;
+      //     const averageSumData = document.querySelectorAll(".month");
+      //     averageSumData.forEach(function (avrsm) {
+      //       let latData = parseInt(avrsm.textContent);
+      //       sum += latData;
+      //     });
+      //     let newAvr = sum / 3;
+      //     document.querySelector(".monthly").textContent = parseFloat(
+      //       newAvr.toFixed(2)
+      //     );
+      //   });
+      // });
 
       window.onbeforeprint = function () {
         if (typeof window.print === 'function') {
