@@ -205,7 +205,7 @@ if(isset($_POST['testSubmit']))
     </tr>
   
     <tr style="border-bottom: 1px solid black">
-        <th colspan="4" style="text-align:left;display:flex;width:100%;"><span>RFI No:</span> <input type="text" id="contract_no" name="contract_no" readonly/></th>    
+        <th colspan="4" style="text-align:left;"><div style="display:flex; align-items:center"><span style="display:inline-block; width:50px">RFI No:</span> <input type="text" id="contract_no" name="contract_no" readonly/></div></th>    
     </tr>
 
     <tr style="border-top: 2px solid black">
