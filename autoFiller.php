@@ -23,150 +23,148 @@ if(isset($_POST['testSubmit']))
     <link href="nepali-date-picker.css" rel="stylesheet" type="text/css" />
     
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      h1 {
-        text-align: center;
-        font-size: 20px;
-        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-      }
-      h4 {
-        text-align: center;
-        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      input {
-        display: flex;
-        width: 100%;
-        border: 0;
-        height: 100%;
-        font-size: 11px;
-        outline: none;
-        padding-left: 10px;
-        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-        font-weight: 500;
-      }
-      table td {
-        height: 20px;
-        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-          sans-serif;
-      }
+        body {
+            font-size: 11px; /* Reduced base font size for better fit */
+            line-height: 1.3;
+            font-family: Arial, sans-serif;
+        }
 
-      table {
-        border-collapse: collapse;
-        width: 100%;
-        margin-top: 1%;
-        font-size: 14px;
-      }
-      th {
-        border-right: 1px solid black;
-      }
+        /* A4 size specifications */
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
 
-      tr {
-        border: 1px solid black;
-      }
+        /* Screen view styles */
+        @media screen {
+            body {
+                max-width: 21cm;
+                margin: 1cm auto;
+                background: #f0f0f0;
+            }
 
-      td {
-        border-right: 1px solid black;
-        border-bottom: none;
-        width: 3000px;
-        
-      }
-      .centered-text{
-        text-align: center;
-      }
-      #noneRow {
-        height: 10px;
-        border-bottom: 3px solid black;
-      }
+            .page {
+                background: white;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                padding: 1cm;
+            }
+        }
 
-      td:last-child {
-        border-right: none;
-      }
-      .smallFont {
-        font-size: 14px;
-      }
+        /* Print styles */
+        @media print {
+            body {
+                width: 21cm;
+                background: none;
+            }
 
-      #heading-data {
-        border: collapse;
-      }
-      .single-line {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-      }
+            .hideOnPrint {
+                display: none !important;
+            }
 
-      .densityData {
-        text-align: center;
-      }
-      #print-button{
-        height: 30px;
-        justify-content: center;
-        align-items: center;
-        width: 140px;
-        float: right;
-        margin-top: 20px;
-        margin-right: 20px;
-        display: flex;
-        border-radius: 10px;
-        outline: 0;
+            select {
+                display: none;
+            }
 
-      }
+            .selected-value::after {
+                content: attr(data-value);
+                display: block;
+                text-align: center;
+            }
+        }
 
-      @media print {
-      /* Hide header and footer during print */
-      @page {
-          margin: 0;
-          /* size: auto; */
-      }
-      
-      /* Hide URL and page count */
-      body {
-          margin: 0;
-          /* margin-top: 0.5cm; */
-          margin-left: 0.25cm;
-          margin-right: 0.25cm;
-          padding: 0;
-      }
-      
-      /* Hide buttons during print */
-      button {
-          display: none !important;
-      }
-      
-      /* Hide file path and page numbers */
-      div:last-child {
-          display: none !important;
-      }
-      text{
-        margin-left: 1cm
-      }
-      select {
-        display: none;
-      }
-      /* Show the selected option as text in print view */
-      .selected-value::after {
-            content: attr(data-value);
-            display: block;
+        h1 {
             text-align: center;
-            vertical-align: middle;
-            line-height: normal; /* Adjust as needed for alignment */
-      }
-      /* Center-align the cell content vertically */
-      .selected-value {
-          text-align: center;
-          vertical-align: middle;
-      }
-      }
-     
-     
-        
-      
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        h4 {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 3px 5px;
+            font-size: 11px;
+        }
+
+        input {
+            width: 100%;
+            border: 0;
+            height: 18px;
+            font-size: 11px;
+            outline: none;
+            padding: 0 5px;
+        }
+
+        .smallFont {
+            font-size: 11px;
+        }
+
+        #noneRow {
+            height: 8px;
+        }
+
+        .densityData {
+            text-align: center;
+        }
+
+        .centered-text {
+            text-align: center;
+        }
+
+        #heading-data {
+            padding: 5px 0;
+        }
+
+        .single-line {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Specific adjustments for the compression test table */
+        .compression-test th {
+            padding: 2px;
+            font-size: 10px;
+        }
+
+        .compression-test td {
+            padding: 2px;
+            height: 20px;
+        }
+
+        /* Signature section adjustments */
+        .signature-row {
+            height: 50px;
+        }
+
+        /* Print button styles */
+        #print-button {
+            padding: 8px 15px;
+            margin: 10px 0;
+            float: right;
+        }
+
+        /* Remarks section */
+        .remarks {
+            margin: 10px 0;
+            font-style: italic;
+        }
     </style>
 
 
@@ -177,23 +175,23 @@ if(isset($_POST['testSubmit']))
     <table>
     <tr>
         <td><label for="project">Project</label></td>
-        <td colspan="5"><input type="text" value="<?php echo $_POST['projectName']; ?>" readonly /></td>
+        <td colspan="5"><input type="text" value="<?php echo $_POST['projectName']; ?>"  /></td>
     </tr>
     <tr>
         <td><label for="project">Contract No</label></td>
-        <td colspan="5"><input type="text" id="contract_no" name="contract_no" readonly /></td>
+        <td colspan="5"><input type="text" id="contract_no" name="contract_no"  readonly/></td>
     </tr>
     <tr>
         <td><label for="project">Client</label></td>
-        <td colspan="5"><input type="text" value="<?php echo $_POST['clientName']; ?>" readonly /></td>
+        <td colspan="5"><input type="text" value="<?php echo $_POST['clientName']; ?>"  /></td>
     </tr>
     <tr>
         <td><label for="project">Contractor</label></td>
-        <td colspan="5"><input type="text" value="<?php echo $_POST['contractorName']; ?>" readonly /></td>
+        <td colspan="5"><input type="text" value="<?php echo $_POST['contractorName']; ?>"  /></td>
     </tr>
     <tr>
         <td><label for="project">Consultant</label></td>
-        <td colspan="5"><input type="text" value="<?php echo $_POST['consultantName']; ?>" readonly /></td>
+        <td colspan="5"><input type="text" value="<?php echo $_POST['consultantName']; ?>"  /></td>
     </tr>
     <tr id="noneRow">
         <td><label for="none"></label></td>
@@ -206,11 +204,11 @@ if(isset($_POST['testSubmit']))
     </tr>
     <tr style="border-top: 2px solid black">
         <td><label for="site">Construction Site</label></td>
-        <td><input type="text" value="<?php echo $_POST['constructionSite']; ?>" readonly /></td>
+        <td><input type="text" value="<?php echo $_POST['constructionSite']; ?>"  /></td>
     </tr>
     <tr>
         <td><label for="structure">Part of Structure/Location</label></td>
-        <td><input type="text" value="<?php echo $_POST['partOfStructure']; ?>" readonly /></td>
+        <td><input type="text" value="<?php echo $_POST['partOfStructure']; ?>"  /></td>
     </tr>
     <tr>
         <td>
@@ -219,19 +217,19 @@ if(isset($_POST['testSubmit']))
                 Agg:
             </label>
         </td>
-        <td><input type="text" value="<?php echo $_POST['sourceFineAgg']; ?>" readonly /></td>
+        <td><input type="text" value="<?php echo $_POST['sourceFineAgg']; ?>"  /></td>
     </tr>
     <tr>
         <td><label for="cementbrand">Brand of Cement</label></td>
-        <td><input type="text" value="<?php echo $_POST['cementBrand']; ?>" readonly /></td>
+        <td><input type="text" value="<?php echo $_POST['cementBrand']; ?>"  /></td>
     </tr>
     <tr>
         <td><label for="mixDesign">Mix Design No:</label></td>
-        <td><input type="text" value="<?php echo $_POST['mixDesignNo']; ?>" readonly /></td>
+        <td><input type="text" value="<?php echo $_POST['mixDesignNo']; ?>"  /></td>
     </tr>
     <tr>
         <td><label for="class">Concrete Class</label></td>
-        <td><input type="text" value="<?php echo $_POST['concreteClass']; ?>" readonly /></td>
+        <td><input type="text" value="<?php echo $_POST['concreteClass']; ?>"  /></td>
     </tr>
     <th id="heading-data" colspan="4">
         <h1>Fresh Concrete Data</h1>
