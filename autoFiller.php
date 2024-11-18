@@ -271,7 +271,7 @@ if (isset($_POST['testSubmit'])) {
       <tr>
         <td rowspan="2" style="text-align: center;"><label for="sn">S.N</label></td>
         <td rowspan="2" style="text-align: center;"><label for="sample">Sample Ref.No.</label></td>
-        <td rowspan="2" style="text-align: center;"><label for="tDate">Testing Date</label></td>
+        <td rowspan="2" style="text-align: center; width:80px;"><label for="tDate">Testing Date</label></td>
         <td rowspan="2" style="text-align: center;"><label for="age">Age <br>(Days)</label></td>
         <td colspan="3" style="text-align: center;"><label for="dimension">CUBE DIMENSION <br>(mm)</br></label></td>
         <td rowspan="2" style="text-align: center;">
