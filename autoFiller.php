@@ -205,9 +205,9 @@ if(isset($_POST['testSubmit']))
     </tr>
   
     <tr style="border-bottom: 1px solid black">
-        <th colspan="4" style="text-align:left;">RFI No:</th>
-        
+        <th colspan="4" style="text-align:left;display:flex;width:100%;"><span>RFI No:</span> <input type="text" id="contract_no" name="contract_no" readonly/></th>    
     </tr>
+
     <tr style="border-top: 2px solid black">
         <td><label for="site">Construction Site</label></td>
         <td><input type="text" value="<?php echo $_POST['constructionSite']; ?>"  /></td>
@@ -494,7 +494,7 @@ if(isset($_POST['testSubmit']))
         const seconds = now.getSeconds();
         
         // Add simple offsets to obscure the values
-        const offsetYear = year - 2000; // Offset year by 2000 to fit in two digits (for years 2000-2099)
+        // const offsetYear = year - 2000; // Offset year by 2000 to fit in two digits (for years 2000-2099)
         const offsetMonth = (month + 13) % 12; // Offset and wrap month
         const offsetDay = (day + 20) % 31; // Offset and wrap day
         const offsetHours = (hours + 15) % 24; // Offset and wrap hours
@@ -502,10 +502,14 @@ if(isset($_POST['testSubmit']))
         const offsetSeconds = (seconds + 45) % 60; // Offset and wrap seconds
         
         // Create an encoded string (using padStart for uniform length)
-        const contractNumber = `BST-${year}-${String(offsetHours).padStart(2, '0')}${String(offsetMinutes).padStart(2, '0')}${String(offsetSeconds).padStart(2, '0')}`;
+        const contractNumber = `BST-${year}-${String(offsetMonth).padStart(2, '0')}${String(offsetDay).padStart(2, '0')}${String(offsetHours).padStart(2, '0')}${String(offsetMinutes).padStart(2, '0')}${String(offsetSeconds).padStart(2, '0')}`;
     
-        document.getElementById("contract_no").value = contractNumber;
+        const contractInputs = document.querySelectorAll("#contract_no");
 
+        // Assign the contract number to each selected input element
+        contractInputs.forEach(input => {
+            input.value = contractNumber;
+        });
       }
 
       window.onload = generateDateBasedContractNumber;
